@@ -71,7 +71,7 @@ a, p, h1, h2, h3, h4, ul, li{
                     justify-content: center;
                     gap: 2%;
                     .form-control{
-                        height: 45px;
+                        // height: 45px;
                         margin-top: 12px;
                     }
                 }
@@ -84,6 +84,11 @@ a, p, h1, h2, h3, h4, ul, li{
                     background-color: #D2D2D2;
                     padding-left: 18px;
                     outline: 0;
+                }
+                @media (max-width:768px){
+                    input{
+                        height: 45px !important;
+                    }
                 }
                 .sdl_btn{
                     background-color: #f1c40f;
@@ -172,4 +177,22 @@ a, p, h1, h2, h3, h4, ul, li{
 a.sidebar-link{
     background: transparent;
     color: #fff;
+}
+.sdl_stdnt{
+    align-items: unset !important;
+    @media (min-width: 992px) {
+        .login_cover .login_box .sdl_form{
+            width: 50% !important;
+        }
+    }
+    @media (min-width: 1200px) {
+        .login_cover .login_box .sdl_form {
+            width: 35% !important;
+        }
+    }
+    .sdl_field_cvr{
+        @media (min-width:768px) and (max-width:992px){
+            width: 100% !important;
+        }
+    }
 }

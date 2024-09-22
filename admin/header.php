@@ -1,6 +1,12 @@
 <?php
-session_start();
-$uname = $_SESSION['uname']; ?>
+
+if (isset($_SESSION['uname'])) {
+    $uname = $_SESSION['uname'];
+} else {
+    // Handle the case when 'uname' is not set, for example:
+    $uname = ''; // Or any default value or redirect to login
+}
+?>
 
 
 <!DOCTYPE html>
@@ -50,7 +56,7 @@ $uname = $_SESSION['uname']; ?>
 				</li>
 
 				<li class="sidebar-item">
-					<a class="sidebar-link" href="../templates/page_student.php">
+					<a class="sidebar-link" href="../student/page_student.php">
 						<i class="align-middle" data-feather=""></i> <span class="align-middle">Students</span>
 					</a>
 				</li>
