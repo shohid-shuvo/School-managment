@@ -1,47 +1,63 @@
 <?php
 require('../database/connect.php');
+require('../classes/email.php'); // Email class include kora
+session_start(); // session start korte hobe
+
 $checkdb = new DB_Conn();
-$connMsg =  $checkdb->connectionMessage();
+$connMsg = $checkdb->connectionMessage();
 
+$email = $_SESSION['emailid']; // session theke email niye ashchi
 
-// +===========================
-        // Check if the form is submitted
-        if (isset($_POST['verify'])) {
-            // Retrieve and sanitize form data
-            $email      = $_SESSION['emailid'];  // Assuming email is stored in session
-            $userOtp    = $_POST['otp'];         // OTP provided by the user
-            
-            // Retrieve the OTP from the database for the given email
-            $stmt = $checkdb->dbStore->prepare("SELECT emailOtp FROM sdl_user WHERE email = ?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->bind_result($dbOtp);
-            $stmt->fetch();
-            $stmt->close();
-            
-            // Compare the OTP entered by the user with the one stored in the database
-            if ($dbOtp == $userOtp) {
-                // OTP is correct
-                echo "<script>alert('OTP verified successfully!');</script>";
-                
-                // You can also update the user's verification status in the database, for example:
-                $stmt = $checkdb->dbStore->prepare("UPDATE sdl_user SET isEmailVerify = 1 WHERE email = ?");
-                $stmt->bind_param("s", $email);
-                $stmt->execute();
-                $stmt->close();
-                
-                // Redirect to another page or display success message
-                header('Location: /oop_project/index.php');
-                exit();
-            } else {
-                // OTP is incorrect
-                echo "<script>alert('Invalid OTP. Please try again.');</script>";
-            }
-        }
+// OTP database theke ber kore email pathhano
+$query = "SELECT emailOtp FROM sdl_user WHERE email = '$email'";
+$result = mysqli_query($checkdb->dbStore, $query);
 
-    // +===========================
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $dbOtp = $row['emailOtp'];
+    var_dump($dbOtp);
+} else {
+    $dbOtp = null;
+}
+
+// Email pathhanor code
+$emailSender = new Email();
+$subject = "Your OTP Code";
+
+if ($dbOtp) {
+    $body = "Your OTP code is: " . $dbOtp;
+    if ($emailSender->send($email, $subject, $body)) {
+        echo "<script>alert('OTP has been sent to your email.');</script>";
+    } else {
+        echo "<script>alert('Failed to send OTP. Please try again.');</script>";
+    }
+} else {
+    echo "<script>alert('No OTP found for this email. Please try again.');</script>";
+}
+
+// OTP verify korar form theke data ashle
+if (isset($_POST['verify'])) {
+    // user theke OTP input
+    $userOtp = $_POST['otp'];
+
+    // User input OTP and database er OTP match korano
+    if ($dbOtp == $userOtp) {
+        // OTP match hoile
+        echo "<script>alert('OTP verified successfully!');</script>";
+        
+        // isEmailVerify update kore database e email verify kora
+        $updateQuery = "UPDATE sdl_user SET isEmailVerify = 1 WHERE email = '$email'";
+        mysqli_query($checkdb->dbStore, $updateQuery);
+
+        // Success er por page redirect
+        header('Location: /oop_project/index.php');
+        exit();
+    } else {
+        // OTP match na korle error message
+        echo "<script>alert('Invalid OTP. Please try again.');</script>";
+    }
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +66,7 @@ $connMsg =  $checkdb->connectionMessage();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Login</title>
-
+    <title>Verify OTP</title>
 </head>
 <body>
     <div class="sdl-login">
@@ -62,7 +77,7 @@ $connMsg =  $checkdb->connectionMessage();
                         <div class="user_icon">
                             <div class="user_circle"><img src="../assets/image/user.svg" alt="user_icon"></div>
                         </div>
-                        <h1>Enter OTP Code </h1>
+                        <h1>Enter OTP Code</h1>
                         <h6>Check your Email</h6>
                         <div class="group">
                             <input class="form-control" type="text" name="otp" id="otp" placeholder="Enter OTP" required>
@@ -78,7 +93,6 @@ $connMsg =  $checkdb->connectionMessage();
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/app.js"></script>
-
 </body>
 </html>
 

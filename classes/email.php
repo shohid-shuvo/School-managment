@@ -15,11 +15,11 @@ class Email {
         $this->mail->isSMTP();
         $this->mail->Host = 'smtp.gmail.com';
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = 'shuvo001956@gmail.com';
+        $this->mail->Username = 'shuvo001956@gmail.com'; // আপনার জিমেইল অ্যাড্রেস
         $this->mail->Password = 'oiqdzulhqnyogptx'; // App password for Gmail
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $this->mail->Port = 587;
-        $this->mail->setFrom('shuvo001956@gmail.com', 'School Management');
+        $this->mail->setFrom('shuvo001956@gmail.com', 'School Management'); // আপনার নাম বা সিস্টেমের নাম
     }
 
     public function send($to, $subject, $body) {
