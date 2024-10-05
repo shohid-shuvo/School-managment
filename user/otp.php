@@ -15,7 +15,6 @@ $result = mysqli_query($checkdb->dbStore, $query);
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $dbOtp = $row['emailOtp'];
-    var_dump($dbOtp);
 } else {
     $dbOtp = null;
 }

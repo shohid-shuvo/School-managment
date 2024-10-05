@@ -2,6 +2,7 @@
 <?php
     include('../inc/program_code.php');
     // include('../inc/otp.php');
+    // session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,6 +2,7 @@
 require('../database/connect.php');
 $checkdb = new DB_Conn();
 $connMsg = $checkdb->connectionMessage();
+session_start();
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
