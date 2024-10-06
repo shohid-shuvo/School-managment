@@ -17,7 +17,7 @@
 <body>
     <div class="sdl-login sdl-signup">
         <div class="container">
-            <div class="login_cover d-md-flex g-5 p-md-3 p-lg-5 align-items-center">
+            <div class="login_cover d-md-flex g-5 p-lg-5 align-items-center">
                 <div class="login_box">
                     <h1>Create Your Account!</h1>
                     
@@ -33,13 +33,13 @@
                                             <!-- FORM INPUT FIELD -->
                         <div class="group">
                             <div class="sdl_joint w-100 d-md-flex" >
-                                <div class="sdl_field_cvr w-50 me-3">
+                                <div class="sdl_field_cvr w-md-50 me-md-3">
                                     <input class="form-control" type="text" name="name"
                                      value="<?php echo isset($name) ? htmlspecialchars($name) : ''; ?>"
                                      id="name" placeholder="Full Name"  required>
                                     <?php if(isset($error['name'])){ echo '<p>'. $error['name']. '</p>';} ?>
                                 </div>
-                                <div class="sdl_field_cvr w-50">
+                                <div class="sdl_field_cvr w-md-50">
                                 <input class="form-control" type="text" name="phone"
                                 value="<?php echo isset($phone) ? htmlspecialchars($phone) : ''; ?>"
                                 id="phone" placeholder="Phone"  required>

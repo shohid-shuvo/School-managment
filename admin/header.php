@@ -28,10 +28,10 @@ if (isset($_SESSION['uname'])) {
 	<title>School Managment Small </title>
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 
-	<link href="../../oop_project/assets/css/app.css" rel="stylesheet">
+	<link href="http://shohidul.rf.gd/assets/css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../oop_project/assets/css/all.min.css">
+    <link rel="stylesheet" href="http://shohidul.rf.gd/assets/css/all.min.css">
 	<link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -83,7 +83,7 @@ if (isset($_SESSION['uname'])) {
 
         <div class="navbar-collapse collapse justify-content-end">
             <ul class="navbar-nav navbar-align">
-                <li class="nav-item dropdown">
+                <!-- <li class="nav-item dropdown">
                     <a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
                         <div class="position-relative">
                             <i class="align-middle" data-feather="bell"></i>
@@ -147,7 +147,7 @@ if (isset($_SESSION['uname'])) {
                             <a href="#" class="text-muted">Show all notifications</a>
                         </div>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
                         <div class="position-relative">
@@ -216,13 +216,13 @@ if (isset($_SESSION['uname'])) {
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-        <i class="align-middle" data-feather="settings"></i>
-        </a>
+                    <!-- <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                        <i class="align-middle" data-feather="settings"></i>
+                    </a> -->
 
-                    <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-        <img src="../assets/image/avatar-1.jpeg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $uname; ?></span>
-        </a>
+                    <a class="nav-link dropdown-toggle d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                        <img src="../assets/image/avatar-1.jpeg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $uname; ?></span>
+                    </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
                         <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>

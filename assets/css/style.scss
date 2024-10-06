@@ -21,6 +21,11 @@ a, p, h1, h2, h3, h4, ul, li{
     margin: 0 !important;
     list-style: none;
 }
+@mixin devicemin($width){
+	@media only screen and (min-width: $width){
+		@content;
+	}
+}
 
 .sdl-login{
     display: flex;
@@ -49,7 +54,7 @@ a, p, h1, h2, h3, h4, ul, li{
             }
             @media(min-width:992px){
                  .sdl_form{
-                    width: 35% !important;
+                    width: 40% !important;
                  }  
                  
             }
@@ -127,10 +132,16 @@ a, p, h1, h2, h3, h4, ul, li{
 
                 .user_circle{
                     position: relative;
-                    width: 130px;
-                    height: 130px;
+                    width: 80px;
+                    height: 80px;
                     border-radius: 50%;
                     border: 2px solid $light_gray;
+
+                    @include devicemin(992px){
+                        width: 130px !important;
+                        height: 130px !important;
+                    }
+
                     &::before{
                         content: "";
                         height: 2px;
@@ -162,8 +173,21 @@ a, p, h1, h2, h3, h4, ul, li{
     }
 }
 
+.sdl-signup{
+    align-items: flex-start;
+    padding-top: 20px;
+    height: 100% !important;
+    padding: 20px 0;
+}
+@include devicemin(1366px){
+    .sdl-signup{
+        height: 100vh !important;
+    }
+}
+
 .sdl-signup .group #name, .group #email{
     width: 100% !important;
+    
 }
 .sdl_field_cvr p{
     color: rgb(255, 0, 0);
