@@ -19,19 +19,23 @@ if ($result && mysqli_num_rows($result) > 0) {
     $dbOtp = null;
 }
 
-// Email pathhanor code
-$emailSender = new Email();
-$subject = "Your OTP Code";
+// Check if OTP is already sent
+if (!isset($_SESSION['otp_sent'])) {
+    // Email pathhanor code
+    $emailSender = new Email();
+    $subject = "Your OTP Code";
 
-if ($dbOtp) {
-    $body = "Your OTP code is: " . $dbOtp;
-    if ($emailSender->send($email, $subject, $body)) {
-        echo "<script>alert('OTP has been sent to your email.');</script>";
+    if ($dbOtp) {
+        $body = "Your OTP code is: " . $dbOtp;
+        if ($emailSender->send($email, $subject, $body)) {
+            $_SESSION['otp_sent'] = true; // Set a flag that OTP has been sent
+            echo "<script>alert('OTP has been sent to your email.');</script>";
+        } else {
+            echo "<script>alert('Failed to send OTP. Please try again.');</script>";
+        }
     } else {
-        echo "<script>alert('Failed to send OTP. Please try again.');</script>";
+        echo "<script>alert('No OTP found for this email. Please try again.');</script>";
     }
-} else {
-    echo "<script>alert('No OTP found for this email. Please try again.');</script>";
 }
 
 // OTP verify korar form theke data ashle
@@ -57,6 +61,7 @@ if (isset($_POST['verify'])) {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
