@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,7 @@
                             <input type="file" name="userphoto" class="d-none" id="userphoto" accept="image/*">
                         </div>
                                             <!-- FORM INPUT FIELD -->
-                        <div class="group">
+                        <!-- <div class="group">
                             <input class="form-control" type="text" name="name" id="name" placeholder="Full Name" required>
                             <input class="form-control" type="email" name="email" id="email" placeholder="Email" required>
                             <input class="form-control" type="text" name="user_name" id="user_name" placeholder="User Name" required>
@@ -44,4 +44,4 @@
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/app.js"></script>
 </body>
-</html>
+</html> --> 
