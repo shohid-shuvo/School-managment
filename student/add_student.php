@@ -2,26 +2,27 @@
 require('../database/connect.php');
 $checkdb = new DB_Conn();
 $connMsg = $checkdb->connectionMessage();
-// echo $connMsg;
 
 if (isset($_POST['stdn_submit'])) {
     // Check if all required fields are set
-    if (isset($_POST['stdn_name'], $_POST['stdn_email'], $_POST['stdn_phone'], $_POST['stdn_dob'], $_POST['stdn_class']) && isset($_FILES['stdn_image'])) {
+    if (isset($_POST['stnd_name'], $_POST['stnd_email'], $_POST['stnd_phone'], $_POST['stnd_dob'], $_POST['stnd_class']) && isset($_FILES['stnd_image'])) {
+        
         // Sanitize and assign the POST data
-        $name = htmlspecialchars($_POST['stdn_name']);
-        $email = htmlspecialchars($_POST['stdn_email']);
-        $phone = htmlspecialchars($_POST['stdn_phone']);
-        $dob = htmlspecialchars($_POST['stdn_dob']);
-        $class = htmlspecialchars($_POST['stdn_class']);
+        $name = htmlspecialchars($_POST['stnd_name']);
+        $email = htmlspecialchars($_POST['stnd_email']);
+        $phone = htmlspecialchars($_POST['stnd_phone']);
+        $dob = htmlspecialchars($_POST['stnd_dob']);
+        $class = htmlspecialchars($_POST['stnd_class']);
+        $regDate = date('Y-m-d H:i:s'); // Set registration date
 
         // Handle the image upload
         $target_dir = "../uploads/student/";
-        $target_file = $target_dir . basename($_FILES["stdn_image"]["stdn_name"]);
+        $target_file = $target_dir . basename($_FILES["stnd_image"]["name"]);
         $uploadOk = 1;
 
         // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["stdn_image"]["tmp_name"]);
-        if($check !== false) {
+        $check = getimagesize($_FILES["stnd_image"]["tmp_name"]);
+        if ($check !== false) {
             $uploadOk = 1;
         } else {
             echo "File is not an image.";
@@ -35,14 +36,14 @@ if (isset($_POST['stdn_submit'])) {
         }
 
         // Check file size
-        if ($_FILES["stdn_image"]["size"] > 500000) {
+        if ($_FILES["stnd_image"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
 
         // Allow certain file formats
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        if(!in_array($imageFileType, ["jpg", "png", "jpeg", "gif"])) {
+        if (!in_array($imageFileType, ["jpg", "png", "jpeg", "gif"])) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
@@ -52,15 +53,16 @@ if (isset($_POST['stdn_submit'])) {
             echo "Sorry, your file was not uploaded.";
         } else {
             // If everything is ok, try to upload file
-            if (move_uploaded_file($_FILES["stdn_image"]["tmp_name"], $target_file)) {
+            if (move_uploaded_file($_FILES["stnd_image"]["tmp_name"], $target_file)) {
                 // Insert the student data into the database
                 $db = new DB_Conn(); // Create a new database connection
-                $query = "INSERT INTO sdl_student (name, email, phone, dob, image, class, reg_date) VALUES ('$name', '$email', '$phone', '$dob', '$class', '$target_file', '$regDate')";
+                $query = "INSERT INTO sdl_student (name, email, phone, dob, class, image, reg_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $db->dbStore->prepare($query);
-                $stmt->bind_param("ssssss", $name, $email, $phone, $dob, $target_file, $class);
+                $stmt->bind_param("sssssss", $name, $email, $phone, $dob, $class, $target_file, $regDate);
 
                 if ($stmt->execute()) {
                     echo "Student added successfully.";
+                    header('Location: ../admin/index.php');
                 } else {
                     echo "Error: " . $stmt->error;
                 }
@@ -77,4 +79,3 @@ if (isset($_POST['stdn_submit'])) {
     echo "Invalid request method.";
 }
 ?>
-

@@ -21,7 +21,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="addStudentForm" method="POST"  enctype="multipart/form-data">
+                        <form id="addStudentForm" method="POST" action="../student/add_student.php"  enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" name="stnd_name" class="form-control" id="name" required>

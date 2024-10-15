@@ -17,7 +17,7 @@ if ($result) {
             echo '<td>' . htmlspecialchars($row['dob']) . '</td>';
             echo '<td>' . htmlspecialchars($row['email']) . '</td>';
             echo '<td>' . htmlspecialchars($row['phone']) . '</td>';
-            echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Student Image" style="width:50px;height:50px;"></td>';
+            echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="Student Image" style="width:35px;height:35px;"></td>';
             echo '<td>' . $row['reg_date'] . '</td>';
             echo '<td>' . htmlspecialchars($row['class']) . '</td>';
         echo '</tr>';
