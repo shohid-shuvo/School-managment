@@ -30,9 +30,9 @@
 		</div>
 	</div>
 
-	<script src="http://shohidul.rf.gd/assets/js/app.js"></script>
+	<script src="../assets/js/app.js"></script>
 	<script src="../assets/js/jquery.min.js"></script>
-    <!-- <script src="../assets/js/bootstrap.min.js"></script> -->
+    <script src="../assets/js/bootstrap.min.js"></script>
     <script src="../assets/js/all.min.js"></script>
     <script src="../assets/js/custom.js"></script>
 

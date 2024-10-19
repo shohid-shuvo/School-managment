@@ -1,6 +1,6 @@
 <?php include('../admin/header.php'); ?>
 <?php include('../student/fetch_students.php'); ?>
-<?php  include('../student/add_students.php'); ?>
+<?php   include('../student/add_students.php'); ?>
 
 
 
@@ -21,6 +21,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                                                    <!-- start form -->
                         <form id="addStudentForm" method="POST" action="../student/add_student.php"  enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
@@ -91,4 +92,4 @@
 <!-- *********** -->
  
 
-<?php include('../admin/footer.php'); ?>
+<?php/ include('../admin/footer.php'); ?>

@@ -31,10 +31,10 @@ if (isset($_SESSION['uname'])) {
 	<title>School Managment Small </title>
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 
-	<link href="http://shohidul.rf.gd/assets/css/app.css" rel="stylesheet">
+	<link href="../assets/css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="http://shohidul.rf.gd/assets/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
 	<link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -42,7 +42,7 @@ if (isset($_SESSION['uname'])) {
 	<div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="index.html">
+                <a class="sidebar-brand" href="../admin/index.php">
                     
                 <i class="fa-solid fa-school"></i> <span class="align-middle">Admin Panel</span>
                 </a>

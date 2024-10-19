@@ -2,23 +2,38 @@
 $(document).ready(function() {
     $('#studentMenuItem').click(function(e) {
         e.preventDefault(); // লিঙ্কের ডিফল্ট কার্যকারিতা বন্ধ করুন
-        $('#contentArea').load('../student/list_student.php .sdl_studentListBody'); // list_student.php লোড করুন
-    });
-});
 
-// load student /////////////////////
-$(document).ready(function() {
-    // Load student data when the button is clicked
-    $('#studentMenuItem').click(function() {
-        $.ajax({
-            url: '../student/fetch_students.php', // Fetch script's URL
-            type: 'GET',
-            success: function(data) {
-                $('#studentListBody').html(data); // Load the response into the student list body
-            },
-            error: function() {
-                alert('Error loading student data.'); // Show error message
-            }
+        // Ajax er maddhome student page load kora
+        $('#contentArea').load('../student/list_student.php .sdl_studentListBody', function() {
+            // Load student data after loading the page
+            $.ajax({
+                url: '../student/fetch_students.php', // Fetch script's URL
+                type: 'GET',
+                success: function(data) {
+                    $('#studentListBody').html(data); // Load the response into the student list body
+                    history.pushState(null, '', '../student/list_student.php'); // Address bar e slug update
+                },
+                error: function() {
+                    alert('Error loading student data.'); // Show error message
+                }
+            });
+        });
+    });
+
+    // Back navigation support
+    $(window).on('popstate', function() {
+        $('#contentArea').load(location.pathname + ' .sdl_studentListBody', function() {
+            // Optional: You can reload the student data if needed
+            $.ajax({
+                url: '../student/fetch_students.php',
+                type: 'GET',
+                success: function(data) {
+                    $('#studentListBody').html(data); // Load the response into the student list body
+                },
+                error: function() {
+                    alert('Error loading student data.');
+                }
+            });
         });
     });
 });
