@@ -9,7 +9,7 @@ if (!isset($_SESSION["uname"])) {
 	
 	<?php include('../admin/header.php'); ?> 	<!-- have header + sidebar -->
 
-			<main class="content">
+			<main class="content sdl_home">
 				<div class="container-fluid p-0">
 					<h1 class="h3 mb-3 fw-bold"> Dashboard</h1>
 					<div class="row">

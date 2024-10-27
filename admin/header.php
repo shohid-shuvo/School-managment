@@ -36,13 +36,15 @@ if (isset($_SESSION['uname'])) {
 
     <link rel="stylesheet" href="../assets/css/all.min.css">
 	<link rel="stylesheet" href="../assets/css/style.css">
+    
+    
 </head>
 
 <body>
 	<div class="wrapper">
         <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
-                <a class="sidebar-brand" href="../admin/index.php">
+                <a class="sidebar-brand" onclick="sdl_home()">
                     
                 <i class="fa-solid fa-school"></i> <span class="align-middle">Admin Panel</span>
                 </a>
@@ -65,17 +67,16 @@ if (isset($_SESSION['uname'])) {
                     </li>
 
                     <li class="sidebar-item">
-                        <a id="teacherMenuItem" class="sidebar-link" href="pages-teacher.html">
+                        <a id="teacherMenuItem" class="sidebar-link" href="#">
                             <img src="../assets/image/teacher.png" class="me-2" width="24px" height="24px"  alt="teacher icon"> <span class="align-middle">Teachers</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="pages-profile.html">
+                        <a class="sidebar-link" href="#">
                         <img src="../assets/image/user-profile.png" class="me-2" width="24px" height="24px"  alt="Profile icon"> <span class="align-middle">Profile</span>
                         </a>
                     </li>
-                    
                 </ul>
             </div>
         </nav>

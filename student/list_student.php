@@ -1,10 +1,7 @@
 <?php include('../admin/header.php'); ?>
-<?php include('../student/fetch_students.php'); ?>
-<?php   include('../student/add_students.php'); ?>
 
+<?php   require_once('../student/add_student.php'); ?>
 
-
-<div class="sdl_studentListBody">
     <!-- STUDENT ADD  -->
     <div class="sdl_studentListBody">
         <h1 class="text-center fw-bold my-4">Manage Students</h1>
@@ -22,30 +19,30 @@
                     </div>
                     <div class="modal-body">
                                                     <!-- start form -->
-                        <form id="addStudentForm" method="POST" action="../student/add_student.php"  enctype="multipart/form-data">
+                        <form id="addStudentForm" method="POST" action="../student/list_student.php"  enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" name="stnd_name" class="form-control" id="name" required>
+                                <input type="text" name="stnd_name" class="form-control" id="name" >
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" name="stnd_email" class="form-control" id="email" required>
+                                <input type="email" name="stnd_email" class="form-control" id="email" >
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone</label>
-                                <input type="text" name="stnd_phone" class="form-control" id="phone" required>
+                                <input type="text" name="stnd_phone" class="form-control" id="phone" >
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Image</label>
-                                <input type="file" name="stnd_image" class="form-control" id="image" accept="image/*" required>
+                                <input type="file" name="stnd_image" class="form-control" id="image" accept="image/*" >
                             </div>
                             <div class="mb-3">
                                 <label for="dob" class="form-label">Date of Birth</label>
-                                <input type="date" name="stnd_dob" class="form-control" id="dob" required>
+                                <input type="date" name="stnd_dob" class="form-control" id="dob" >
                             </div>
                             <div class="mb-3">
                                 <label for="class" class="form-label">Class</label>
-                                <input type="text" name="stnd_class" class="form-control" id="class" required>
+                                <input type="text" name="stnd_class" class="form-control" id="class" >
                             </div>
                             <button type="submit" name="stdn_submit" class="btn btn-primary">Add Student</button>
                         </form>
@@ -75,6 +72,7 @@
                                 </thead>
                                 <tbody id="studentListBody">
                                     <!-- Student data will be loaded here -->
+                                    <?php include('../student/fetch_students.php'); ?>
                                 </tbody>
                             </table>
                         </div>
@@ -84,12 +82,6 @@
         </div>
     </div>
 
-
-</div>
-
-
-
 <!-- *********** -->
  
-
-<?php/ include('../admin/footer.php'); ?>
+<?php include('../admin/footer.php'); ?>

@@ -1,5 +1,5 @@
 <?php
-require('../database/connect.php');
+require_once('../database/connect.php');
 $checkdb = new DB_Conn();
 $connMsg = $checkdb->connectionMessage();
 
@@ -30,10 +30,10 @@ if (isset($_POST['stdn_submit'])) {
         }
 
         // Check if file already exists
-        if (file_exists($target_file)) {
-            echo "Sorry, file already exists.";
-            $uploadOk = 0;
-        }
+        // if (file_exists($target_file)) {
+        //     echo "Sorry, file already exists.";
+        //     $uploadOk = 0;
+        // }
 
         // Check file size
         if ($_FILES["stnd_image"]["size"] > 500000) {
@@ -61,8 +61,9 @@ if (isset($_POST['stdn_submit'])) {
                 $stmt->bind_param("sssssss", $name, $email, $phone, $dob, $class, $target_file, $regDate);
 
                 if ($stmt->execute()) {
-                    echo "Student added successfully.";
-                    header('Location: ../admin/index.php');
+                    // echo "Student added successfully.";
+                    ?> <script>alert("Student added successfully.");</script> <?php
+                    // header('Location: ../student/list_student.php');
                 } else {
                     echo "Error: " . $stmt->error;
                 }
@@ -75,7 +76,5 @@ if (isset($_POST['stdn_submit'])) {
     } else {
         echo "Please fill all fields.";
     }
-} else {
-    echo "Invalid request method.";
-}
+} 
 ?>

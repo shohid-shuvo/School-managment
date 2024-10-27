@@ -40,31 +40,30 @@ $(document).ready(function() {
 
                 // MODAL SCRIPT **************
                 
-                $(document).ready(function() {
-                    $('#addStudentForm').on('submit', function(e) {
-                        e.preventDefault(); // Prevent default form submission
+                // $(document).ready(function() {
+                //     $('#addStudentForm').on('submit', function(e) {
+                //         e.preventDefault(); // Prevent default form submission
                 
-                        var formData = new FormData(this); // Create a FormData object to handle file uploads
+                //         var formData = new FormData(this); // Create a FormData object to handle file uploads
                 
-                        $.ajax({
-                            url: '../student/add_student.php',
-                            type: 'POST',
-                            data: formData,
-                            contentType: false,
-                            processData: false,
-                            success: function(response) {
-                                alert('Student added successfully!');
-                                // Optionally reload the student list
-                                $('#studentListBody').load('../student/fetch_students.php');
-                                $('#addStudentModal').modal('hide'); // Close the modal
-                            },
-                            error: function() {
-                                alert('Failed to add student.');
-                            }
-                        });
-                    });
-                });
+                //         $.ajax({
+                //             url: '../student/add_student.php',
+                //             type: 'POST',
+                //             data: formData,
+                //             contentType: false,
+                //             processData: false,
+                //             success: function(response) {
+                //                 alert('Student added successfully!');
+                //                 alert('test');
+                //                 // Optionally reload the student list
+                //                 $('#studentListBody').load('../student/fetch_students.php');
+                //                 $('#addStudentModal').modal('hide'); // Close the modal
+                //                 $('#studentListBody').html(data);
+                //             },
+                //             error: function() {
+                //                 alert('Failed to add student.');
+                //             }
+                //         });
+                //     });
+                // });
                 
-
-
-

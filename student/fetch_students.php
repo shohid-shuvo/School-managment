@@ -1,5 +1,5 @@
 <?php
-require('../database/connect.php'); // DB সংযোগের জন্য connect.php অন্তর্ভুক্ত করুন
+require_once('../database/connect.php'); // DB সংযোগের জন্য connect.php অন্তর্ভুক্ত করুন
 
 $checkdb = new DB_Conn(); // DB_Conn ক্লাসের একটি উদাহরণ তৈরি করুন
 $connMsg = $checkdb->connectionMessage(); // ডাটাবেস সংযোগের বার্তা নিন
