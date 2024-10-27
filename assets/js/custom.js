@@ -38,32 +38,40 @@ $(document).ready(function() {
     });
 });
 
-                // MODAL SCRIPT **************
-                
-                // $(document).ready(function() {
-                //     $('#addStudentForm').on('submit', function(e) {
-                //         e.preventDefault(); // Prevent default form submission
-                
-                //         var formData = new FormData(this); // Create a FormData object to handle file uploads
-                
-                //         $.ajax({
-                //             url: '../student/add_student.php',
-                //             type: 'POST',
-                //             data: formData,
-                //             contentType: false,
-                //             processData: false,
-                //             success: function(response) {
-                //                 alert('Student added successfully!');
-                //                 alert('test');
-                //                 // Optionally reload the student list
-                //                 $('#studentListBody').load('../student/fetch_students.php');
-                //                 $('#addStudentModal').modal('hide'); // Close the modal
-                //                 $('#studentListBody').html(data);
-                //             },
-                //             error: function() {
-                //                 alert('Failed to add student.');
-                //             }
-                //         });
-                //     });
-                // });
-                
+// =================== add_student file check
+document.getElementById("image").addEventListener("change", function() {
+    const fileInput = document.getElementById("image");
+    const fileSizeError = document.getElementById("fileSizeError");
+    const fileFormatError = document.getElementById("fileFormatError");
+    const submitButton = document.getElementById("stdn_submit");
+    const allowedFormats = ["jpg", "jpeg", "png", "gif"];
+    let valid = true;
+
+    // Reset error messages
+    fileSizeError.style.display = "none";
+    fileFormatError.style.display = "none";
+
+    // Check if file is selected
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const fileSize = file.size / 1024; // Size in KB
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+
+        // Check file size
+        if (fileSize > 500) {
+            fileSizeError.style.display = "inline";
+            valid = false;
+        }
+
+        // Check file format
+        if (!allowedFormats.includes(fileExtension)) {
+            fileFormatError.style.display = "inline";
+            valid = false;
+        }
+
+        // Disable submit button if not valid
+        submitButton.disabled = !valid;
+    } else {
+        submitButton.disabled = false; // Enable if no file is selected
+    }
+});

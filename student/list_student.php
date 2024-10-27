@@ -18,11 +18,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                                                    <!-- start form -->
-                        <form id="addStudentForm" method="POST" action="../student/list_student.php"  enctype="multipart/form-data">
+                        <!-- start form -->
+                        <form id="addStudentForm" method="POST" action="../student/list_student.php" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" name="stnd_name" class="form-control" id="name" >
+                                <input type="text" name="stnd_name" class="form-control" id="name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -34,7 +34,9 @@
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Image</label>
-                                <input type="file" name="stnd_image" class="form-control" id="image" accept="image/*" >
+                                <input type="file" name="stnd_image" class="form-control" id="image" accept="image/*">
+                                <span id="fileSizeError" style="color: red; display: none;">File size must be less than 500KB.</span>
+                                <span id="fileFormatError" style="color: red; display: none;">Only JPG, JPEG, PNG & GIF files are allowed.</span>
                             </div>
                             <div class="mb-3">
                                 <label for="dob" class="form-label">Date of Birth</label>
@@ -44,7 +46,7 @@
                                 <label for="class" class="form-label">Class</label>
                                 <input type="text" name="stnd_class" class="form-control" id="class" >
                             </div>
-                            <button type="submit" name="stdn_submit" class="btn btn-primary">Add Student</button>
+                            <button type="submit" name="stdn_submit" class="btn btn-primary" id="stdn_submit">Add Student</button>
                         </form>
                     </div>
                 </div>
