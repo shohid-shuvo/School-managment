@@ -35,6 +35,7 @@ if (isset($_POST['stdn_submit'])) {
             if ($_FILES["stnd_image"]["size"] > 500000) {
                 echo "Sorry, your file is too large.";
                 $uploadOk = 0;
+                ?> <script>alert('testing sdl')</script> <?php 
             }
 
             // Allow certain file formats
@@ -53,6 +54,7 @@ if (isset($_POST['stdn_submit'])) {
                 $target_file = null; // Set to null if upload failed
             }
         }
+        
 
         // Insert the student data into the database
         $db = new DB_Conn(); // Create a new database connection
@@ -72,3 +74,5 @@ if (isset($_POST['stdn_submit'])) {
     }
 }
 ?>
+
+

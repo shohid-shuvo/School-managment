@@ -61,7 +61,7 @@ if (isset($_SESSION['uname'])) {
                     </li>
 
                     <li class="sidebar-item">
-                        <a id="studentMenuItem" class="sidebar-link ajax-load" href="#" data-target="../student/Student.php">
+                        <a href="../student/list_student.php" id="studentMenuItem" class="sidebar-link ajax-load" href="#" data-target="../student/list_student.php">
                         <img src="../assets/image/student.png" class="me-2" width="24px" height="24px"  alt="Students icon"> <span class="align-middle">Students</span>
                         </a>
                     </li>

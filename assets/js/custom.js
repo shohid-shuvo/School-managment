@@ -1,41 +1,42 @@
 
 $(document).ready(function() {
-    $('#studentMenuItem').click(function(e) {
-        e.preventDefault(); // লিঙ্কের ডিফল্ট কার্যকারিতা বন্ধ করুন
+    // $('#studentMenuItem').click(function(e) {
+    // // $(document).on('click','#studentMenuItem', function(e) {
+    //     e.preventDefault(); // turn off default work
 
-        // Ajax er maddhome student page load kora
-        $('#contentArea').load('../student/list_student.php .sdl_studentListBody', function() {
-            // Load student data after loading the page
-            $.ajax({
-                url: '../student/fetch_students.php', // Fetch script's URL
-                type: 'GET',
-                success: function(data) {
-                    $('#studentListBody').html(data); // Load the response into the student list body
-                    history.pushState(null, '', '../student/list_student.php'); // Address bar e slug update
-                },
-                error: function() {
-                    alert('Error loading student data.'); // Show error message
-                }
-            });
-        });
-    });
+    //     // Ajax er maddhome student page load kora
+    //     $('#contentArea').load('../student/list_student.php .sdl_studentListBody', function() {
+    //         // Load student data after loading the page
+    //         $.ajax({
+    //             url: '../student/fetch_students.php', // Fetch script's URL
+    //             type: 'GET',
+    //             success: function(data) {
+    //                 $('#studentListBody').html(data); // Load the response into the student list body
+    //                 history.pushState(null, '', '../student/list_student.php'); // Address bar e slug update
+    //             },
+    //             error: function() {
+    //                 alert('Error loading student data.'); // Show error message
+    //             }
+    //         });
+    //     });
+    // });
 
     // Back navigation support
-    $(window).on('popstate', function() {
-        $('#contentArea').load(location.pathname + ' .sdl_studentListBody', function() {
-            // Optional: You can reload the student data if needed
-            $.ajax({
-                url: '../student/fetch_students.php',
-                type: 'GET',
-                success: function(data) {
-                    $('#studentListBody').html(data); // Load the response into the student list body
-                },
-                error: function() {
-                    alert('Error loading student data.');
-                }
-            });
-        });
-    });
+    // $(window).on('popstate', function() {
+    //     $('#contentArea').load(location.pathname + ' .sdl_studentListBody', function() {
+    //         // Optional: You can reload the student data if needed
+    //         $.ajax({
+    //             url: '../student/fetch_students.php',
+    //             type: 'GET',
+    //             success: function(data) {
+    //                 $('#studentListBody').html(data); // Load the response into the student list body
+    //             },
+    //             error: function() {
+    //                 alert('Error loading student data.');
+    //             }
+    //         });
+    //     });
+    // });
 });
 
 // =================== add_student file check
@@ -74,4 +75,36 @@ document.getElementById("image").addEventListener("change", function() {
     } else {
         submitButton.disabled = false; // Enable if no file is selected
     }
+
+    submitButton.disabled = false;
+
 });
+
+// ****************
+
+$(document).ready(function() {
+    $(document).on('click', '#delBtn', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        var stndID = $(this).data("id"); 
+        var element = this;
+
+        if (confirm("Are you sure you want to delete this student?")) {
+            $.ajax({
+                type: "POST",
+                url: "delt_student.php",
+                data: { deleteid: stndID }, // Update key to match PHP file
+                success: function(response) {
+                    if (response === 'success') {
+                        $(element).closest('tr').fadeOut();
+                    } else {
+                        alert("Failed to delete data.");
+                    }
+                },
+                error: function() {
+                    alert("An error occurred while processing the request.");
+                }
+            });
+        }
+    });
+});
+
