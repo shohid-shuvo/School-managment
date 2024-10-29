@@ -60,6 +60,16 @@ $result = mysqli_query($checkdb->dbStore, $query);
                 </div>
             </div>
         </div>
+
+
+        
+        <div id="custom-alert" style="display: none; background-color: #4CAF50; color: white; padding: 10px; position: fixed; top: 10px; right: 10px; z-index: 1000;">
+            Student added successfully.
+        </div>
+        
+
+
+
         <!-- student list table -->
         <div class="row">
             <div class="col-lg-12 mx-auto">
@@ -97,8 +107,12 @@ $result = mysqli_query($checkdb->dbStore, $query);
                                                 echo '<td>' . $row['reg_date'] . '</td>';
                                                 echo '<td>' . htmlspecialchars($row['class']) . '</td>';
                                                 ?>  
-                                                <td>
+                                                <td class="sdl_dlt">
                                                     <a id='delBtn' data-id='<?php echo $student_id?>' >Delete</a>
+                                                    <!-- Loading Spinner, initially hidden -->
+                                                    <div id="loadingSpinner" style="display: none;">
+                                                        <img src="../assets/image/loading1.gif" alt="Loading..." />
+                                                    </div>
                                                 </td>
                                                 <?php
                                             echo '</tr>';

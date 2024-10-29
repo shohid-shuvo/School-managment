@@ -63,7 +63,17 @@ if (isset($_POST['stdn_submit'])) {
         $stmt->bind_param("sssssss", $name, $email, $phone, $dob, $class, $target_file, $regDate);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Student added successfully.');</script>";
+            echo "
+                <script>
+                    setTimeout(function() {
+                    const alertBox = document.getElementById('custom-alert');
+                    alertBox.style.display = 'block';
+                    setTimeout(function() {
+                        alertBox.style.display = 'none';
+                    }, 2000); // Hide the alert after 2 seconds
+                }, 000); // Show the alert after 2 seconds
+
+                </script>";
         } else {
             echo "Error: " . $stmt->error;
         }
