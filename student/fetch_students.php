@@ -19,27 +19,15 @@ if ($result) {
             echo '<td><img src="' . htmlspecialchars($row['image']) . '" alt="no Image" style="width:35px;height:35px;"></td>';
             echo '<td>' . $row['reg_date'] . '</td>';
             echo '<td>' . htmlspecialchars($row['class']) . '</td>';
-
-
-            // draft draft draft draft draft draft draft draft draft draft 
             ?>  
-                <td>
+                <td class="sdl_dlt">
                     <a id='delBtn' data-id='<?php echo $student_id?>' >Delete</a>
+                    <!-- Loading Spinner, initially hidden -->
+                    <div id="loadingSpinner" style="display: none;">
+                        <img src="../assets/image/loading1.gif" alt="Loading..." />
+                    </div>
                 </td>
-                <!-- <td>
-                    <a id="delBtn" href="javascript:confirmDelete('<?php// echo $row['id']; ?>')">Delete</a>
-                </td> -->
-                <script>
-                    // function confirmDelete(id) {
-                    //     if (confirm("Are you sure you want to delete this student?")) {
-                    //         window.location.href = "delt_student.php?deleteid=" + id;
-                    //     }
-                    // }
-                </script>
             <?php
-            // draft draft draft draft draft draft draft draft 
-
-            
         echo '</tr>';
     }
 } else {

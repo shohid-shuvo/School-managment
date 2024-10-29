@@ -26,7 +26,7 @@ $result = mysqli_query($checkdb->dbStore, $query);
                     <div class="modal-body">
                                             <!-- start form -->
 
-                        <form id="addStudentForm" method="POST" action="../student/list_student.php" enctype="multipart/form-data">
+                        <form id="addStudentForm" method="POST"  enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" name="stnd_name" class="form-control" id="name" required>
@@ -61,15 +61,58 @@ $result = mysqli_query($checkdb->dbStore, $query);
             </div>
         </div>
 
+        <!-- student edit modal -->
 
-        
+        <div class="modal fade" id="editStudentModal" tabindex="-1" aria-labelledby="editStudentModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editStudentModalLabel">Add Student</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                                            <!-- start form -->
+
+                        <form id="addStudentForm" method="POST"  enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="stnd_name" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" name="stnd_email" class="form-control" id="email" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone</label>
+                                <input type="text" name="stnd_phone" class="form-control" id="phone" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" name="stnd_image" class="form-control" id="image" accept="image/*">
+                                <span id="fileSizeError" style="color: red; display: none;">File size must be less than 500KB.</span>
+                                <span id="fileFormatError" style="color: red; display: none;">Only JPG, JPEG, PNG & GIF files are allowed.</span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                                <input type="date" name="stnd_dob" class="form-control" id="dob" >
+                            </div>
+                            <div class="mb-3">
+                                <label for="class" class="form-label">Class</label>
+                                <input type="text" name="stnd_class" class="form-control" id="class" >
+                            </div>
+                            <button type="submit" name="stdn_submit" class="btn btn-primary" id="stdn_submit">Add Student</button>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- student add success message -->
         <div id="custom-alert" style="display: none; background-color: #4CAF50; color: white; padding: 10px; position: fixed; top: 10px; right: 10px; z-index: 1000;">
             Student added successfully.
         </div>
         
-
-
-
         <!-- student list table -->
         <div class="row">
             <div class="col-lg-12 mx-auto">
@@ -92,7 +135,8 @@ $result = mysqli_query($checkdb->dbStore, $query);
                                 </thead>
                                 <tbody id="studentListBody">
                                     <!-- Student data will be loaded here -->
-                                    <?php //  include('../student/fetch_students.php'); 
+                                    <?php 
+                                    // include('../student/fetch_students.php'); 
                                     
                                     if ($result) {
                                         while ($row = mysqli_fetch_assoc($result)) {
@@ -107,12 +151,13 @@ $result = mysqli_query($checkdb->dbStore, $query);
                                                 echo '<td>' . $row['reg_date'] . '</td>';
                                                 echo '<td>' . htmlspecialchars($row['class']) . '</td>';
                                                 ?>  
-                                                <td class="sdl_dlt">
-                                                    <a id='delBtn' data-id='<?php echo $student_id?>' >Delete</a>
+                                                <td class="sdl_dlt d-flex nowrap">
+                                                    <a id='delBtn' class="sdl_btnn" data-id='<?php echo $student_id?>' >Delete</a>
                                                     <!-- Loading Spinner, initially hidden -->
                                                     <div id="loadingSpinner" style="display: none;">
-                                                        <img src="../assets/image/loading1.gif" alt="Loading..." />
+                                                        <img src="../assets/image/loading.gif" alt="Loading..." />
                                                     </div>
+                                                    <a id='editStudentButton' class="editBtn" data-bs-toggle="modal" data-bs-target="#editStudentModal">Edit</a>
                                                 </td>
                                                 <?php
                                             echo '</tr>';

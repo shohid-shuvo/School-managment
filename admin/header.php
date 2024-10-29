@@ -225,7 +225,7 @@ if (isset($_SESSION['uname'])) {
                                 <i class="align-middle" data-feather="settings"></i>
                             </a> -->
 
-                            <a class="nav-link dropdown-toggle d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                            <a class="nav-link dropdown-toggle d-sm-inline-block" href="" data-bs-toggle="dropdown">
                                 <img src="../assets/image/avatar-1.jpeg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $uname; ?></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">

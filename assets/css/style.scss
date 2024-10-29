@@ -122,7 +122,7 @@ a, p, h1, h2, h3, h4, ul, li{
                 justify-content: center;
                 align-items: center;
                 position: relative;
-                margin-bottom: 25px;
+                // margin-bottom: 25px;
 
                 .user_phto_lbl{
                     color: $white;
@@ -136,11 +136,12 @@ a, p, h1, h2, h3, h4, ul, li{
                     height: 80px;
                     border-radius: 50%;
                     border: 2px solid $light_gray;
+                    margin: 20px;
 
-                    @include devicemin(992px){
-                        width: 130px !important;
-                        height: 130px !important;
-                    }
+                    // @include devicemin(992px){
+                    //     width: 130px !important;
+                    //     height: 130px !important;
+                    // }
 
                     &::before{
                         content: "";
@@ -178,10 +179,26 @@ a, p, h1, h2, h3, h4, ul, li{
     padding-top: 20px;
     height: 100% !important;
     padding: 20px 0;
+    
+    
+
+    .sdl_siupSubCovr{
+        position: relative;
+
+        #signUpLoading{
+            display: inline;
+            position: absolute;
+            left: 71%;
+            top: 50%;
+            transform: translateY(-39%);
+        }
+    }
 }
 @include devicemin(1366px){
     .sdl-signup{
         height: 100vh !important;
+        align-items: center;
+
     }
 }
 
@@ -227,11 +244,30 @@ a.sidebar-link{
     height: 32px;
 }
 #studentListBody{
+    .sdl_dlt{
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        gap: 2px;
+    }
+    #delBtn, .editBtn{
+        background: rgb(187, 0, 0);
+        color: #fff;
+        border-radius: 4px;
+        text-align: center;
+        transition: all .5s;
+        &:hover{
+            opacity: .6;
+        }
+    }
+    .editBtn{
+        background-color: rgb(5, 195, 5);
+    }
     #loadingSpinner{
         margin-top: -30px;
         margin-left: -37px;
         position: absolute;
-        top: 50%;
+        top: 25%;
         left: 50%;
     }
 }

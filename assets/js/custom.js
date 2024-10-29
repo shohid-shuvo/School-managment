@@ -1,50 +1,61 @@
 
 // =================== add_student form validation
-document.getElementById("image").addEventListener("change", function() {
-    const fileInput = document.getElementById("image");
-    const fileSizeError = document.getElementById("fileSizeError");
-    const fileFormatError = document.getElementById("fileFormatError");
-    const submitButton = document.getElementById("stdn_submit");
-    const allowedFormats = ["jpg", "jpeg", "png", "gif"];
-    let valid = true;
+$(document).ready(function () {
+    $('#submitBtn').on('click', function (e) {
+        e.preventDefault();
 
-    // Reset error messages
-    fileSizeError.style.display = "none";
-    fileFormatError.style.display = "none";
+        // Clear previous error messages
+        $('.error-message').text('');
 
-    // Check if file is selected
-    if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const fileSize = file.size / 1024; // Size in KB
-        const fileExtension = file.name.split('.').pop().toLowerCase();
+        $.ajax({
+            url: '../inc/program_code.php', // Change this to your validation handling script
+            type: 'POST',
+            data: $('#signupForm').serialize(),
+            dataType: 'json',
 
-        // Check file size
-        if (fileSize > 500) {
-            fileSizeError.style.display = "inline";
-            valid = false;
-        }
+            beforeSend: function() {
+                $('#signUpLoading').show();
+            },
+            complete: function() {
+                $('#signUpLoading').hide();
+                },
 
-        // Check file format
-        if (!allowedFormats.includes(fileExtension)) {
-            fileFormatError.style.display = "inline";
-            valid = false;
-        }
-
-        // Disable submit button if not valid
-        submitButton.disabled = !valid;
-    } else {
-        submitButton.disabled = false; // Enable if no file is selected
-    }
-
-    submitButton.disabled = false;
-
+            success: function (response) {
+                if (response.success) {
+                    alert('Form submitted successfully');
+                    // Redirect or perform any action upon successful submission
+                    window.location.href = '/oop_project/index.php'; // Redirect after success
+                } else {
+                    // Show validation error messages
+                    if (response.errors.name) {
+                        $('#nameError').text(response.errors.name);
+                    }
+                    if (response.errors.phone) {
+                        $('#phoneError').text(response.errors.phone);
+                    }
+                    if (response.errors.email) {
+                        $('#emailError').text(response.errors.email);
+                    }
+                    if (response.errors.user_name) {
+                        $('#userNameError').text(response.errors.user_name);
+                    }
+                    if (response.errors.pass) {
+                        $('#passwordError').text(response.errors.pass);
+                    }
+                }
+            },
+            error: function () {
+                alert('An error occurred. Please try again.');
+            }
+        });
+    });
 });
 
 // ****************
                                 // student delete with ajax
     $(document).ready(function() {
-        $(document).on('click', '#delBtn', function(e) {
-            // e.preventDefault(); // Prevent default link behavior
+        $(document).on('click', '.sdl_btnn', function(e) {
+             e.preventDefault(); // Prevent default link behavior
     
             var studentID = $(this).data("id"); // Get the student's ID
             var rowElement = $(this).closest('tr'); // The row to be deleted
@@ -82,25 +93,18 @@ document.getElementById("image").addEventListener("change", function() {
     });
 
     // student form ajax load after click the submit button
-    // $(document).ready(function() {
-    //     $('#submitBtn').on('click', function(e) {
-    //         e.preventDefault();
-    //         var studentID = $('#studentID').val();
-    //         var studentName = $('#studentName').val();
-    //         var studentAge = $('#studentAge').val();
-    //         var studentGender = $('#studentGender').val();
-
-    // });
-    // // $(document).on('click', '#delBtn', function(e) {
-        
-    // });
+    $(document).ready(function() {
+        $(document).on('click', '#delBtn', function(e) {
+            
+        });
+    });
 
 
 // student list page load with ajax
 
 $(document).ready(function() {
     // $('#studentMenuItem').click(function(e) {
-    // // $(document).on('click','#studentMenuItem', function(e) {
+    // $(document).on('click','#studentMenuItem', function(e) {
     //     e.preventDefault(); // turn off default work
 
     //     // Ajax er maddhome student page load kora
@@ -120,20 +124,22 @@ $(document).ready(function() {
     //     });
     // });
 
+    // ******************************
+
     // Back navigation support
-    // $(window).on('popstate', function() {
-    //     $('#contentArea').load(location.pathname + ' .sdl_studentListBody', function() {
-    //         // Optional: You can reload the student data if needed
-    //         $.ajax({
-    //             url: '../student/fetch_students.php',
-    //             type: 'GET',
-    //             success: function(data) {
-    //                 $('#studentListBody').html(data); // Load the response into the student list body
-    //             },
-    //             error: function() {
-    //                 alert('Error loading student data.');
-    //             }
-    //         });
-    //     });
-    // });
+    $(window).on('popstate', function() {
+        $('#contentArea').load(location.pathname + ' .sdl_studentListBody', function() {
+            // Optional: You can reload the student data if needed
+            $.ajax({
+                url: '../student/fetch_students.php',
+                type: 'GET',
+                success: function(data) {
+                    $('#studentListBody').html(data); // Load the response into the student list body
+                },
+                error: function() {
+                    alert('Error loading student data.');
+                }
+            });
+        });
+    });
 });
