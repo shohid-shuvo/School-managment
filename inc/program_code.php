@@ -23,14 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Validate email field
     if (empty($email)) {
-        $errors['email'] = "Input field is empty";
+        $errors['email'] = "Input field is empty"; // Error if the field is empty
     } else {
-        // Check if the email already exists in the database
-        $emailDuplicate = mysqli_query($checkdb->dbStore, "SELECT * FROM sdl_user WHERE email='$email'");
-        if (mysqli_num_rows($emailDuplicate) > 0) {
-            $errors['email'] = "Email already exists";
+        // Check if the email format is valid using preg_match
+        if (!preg_match("/^[\w\-\.]+@[a-zA-Z\d\-]+\.[a-zA-Z]{2,6}$/", $email)) { // Purple: Regular expression for basic email validation
+            $errors['email'] = "Invalid email format"; // Purple: Sets an error if the email format is invalid
+        } else {
+            // Check if the email already exists in the database
+            $emailDuplicate = mysqli_query($checkdb->dbStore, "SELECT * FROM sdl_user WHERE email='$email'");
+            if (mysqli_num_rows($emailDuplicate) > 0) {
+                $errors['email'] = "Email already exists"; // Error if the email already exists
+            }
         }
     }
+    
 
     // Validate phone field
     if (empty($phone)) {
